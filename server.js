@@ -6,11 +6,14 @@ require('dotenv').config();
 const sendSMS = require('./twilio');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
 app.use(bodyParser.json());
 
 const CONTACTS_PATH = './contacts.json'
 const MESSAGES_PATH ='./messages.json'
+
 
 app.get('/api/contacts', (req, res) => {
   const data = fs.readFileSync(CONTACTS_PATH);
